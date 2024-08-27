@@ -1,0 +1,37 @@
+local Workspace = game:GetService("Workspace")
+
+local function createGuiForObject(object)
+    if object:FindFirstChild("LocationGui") then
+        return
+    end
+
+    local billboardGui = Instance.new("BillboardGui")
+    billboardGui.Name = "LocationGui"
+    billboardGui.Size = UDim2.new(0, 100, 0, 50)
+    billboardGui.StudsOffset = Vector3.new(0, 2, 0)
+    billboardGui.AlwaysOnTop = true
+    billboardGui.Parent = object
+
+    local textLabel = Instance.new("TextLabel")
+    textLabel.Size = UDim2.new(1, 0, 1, 0)
+    textLabel.BackgroundTransparency = 1
+    textLabel.Text = "Колпачок"
+    textLabel.TextColor3 = Color3.new(1, 0, 0)
+    textLabel.TextScaled = true
+    textLabel.Parent = billboardGui
+end
+
+local function addGuiToObjects()
+    for _, object in Workspace:GetChildren() do
+        if object:IsA("BasePart") and object.Name == "-bddurka2024" then
+            createGuiForObject(object)
+        end
+    end
+end
+
+addGuiToObjects()
+
+while true do
+    addGuiToObjects()
+    task.wait(3)
+end
